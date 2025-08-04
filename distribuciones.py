@@ -13,7 +13,6 @@ distribuciones = {
     "Binomial (n, p)": ("binom", ["n", "p"]),
     "Poisson (λ)": ("poisson", ["λ"]),
     "Exponencial (λ)": ("expon", ["λ"]),
-    "Plank (λ)": ("planck", ["λ"]),
     "Uniforme continua (a, b)": ("uniform", ["a", "b"]),
     "Uniforme discreta (a, b)": ("randint", ["a", "b"]),
     "t de Student (df)": ("t", ["df"]),
@@ -44,7 +43,7 @@ else:
     x = None
 
 # Selección de tipo de distribución (continua, discreta)
-discretas = ["binom", "poisson", "randint", "planck"]
+discretas = ["binom", "poisson", "randint"]
 discreta = dist_code in discretas
 
 # Botón para ejecutar
