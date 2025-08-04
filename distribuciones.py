@@ -7,13 +7,15 @@ st.set_page_config(page_title="Distribuciones de Probabilidad", layout="centered
 
 st.title("Distribuciones de Probabilidad")
 
-# Distribuciones comunes y sus parámetros
+# Distribuciones y sus parámetros
 distribuciones = {
     "Normal (μ, σ)": ("norm", ["μ", "σ"]),
     "Binomial (n, p)": ("binom", ["n", "p"]),
     "Poisson (λ)": ("poisson", ["λ"]),
     "Exponencial (λ)": ("expon", ["λ"]),
-    "Uniforme (a, b)": ("uniform", ["a", "b"]),
+    "Plank (λ)": ("planck", ["λ"]),
+    "Uniforme continua (a, b)": ("uniform", ["a", "b"]),
+    "Uniforme discreta (a, b)": ("randint", ["a", "b"]),
     "t de Student (df)": ("t", ["df"]),
     "F de Fisher (df1, df2)": ("f", ["df1", "df2"]),
     "Chi-cuadrada (df)": ("chi2", ["df"]),
@@ -31,7 +33,7 @@ for label in param_labels:
         valor = int(valor)
     params.append(valor)
 
-# Ingreso de valor x o probabilidad p
+# Selección de valor x o probabilidad p
 modo = st.radio("¿Qué deseas calcular?", ["Probabilidad P(X ≤ x)", "Inversa (x tal que P(X ≤ x) = p)"])
 
 if modo == "Probabilidad P(X ≤ x)":
@@ -41,13 +43,12 @@ else:
     p = st.number_input("Ingresa la probabilidad p (entre 0 y 1):", min_value=0.0, max_value=1.0, value=0.95)
     x = None
 
-# Saber si es discreta
-discretas = ["binom", "poisson"]
+# Selección de tipo de distribución (continua, discreta)
+discretas = ["binom", "poisson", "randint", "planck"]
 discreta = dist_code in discretas
 
 # Botón para ejecutar
 if st.button("Calcular y Graficar"):
-    # Obtener la distribución
     if dist_code == "expon":
         distribucion = stats.expon(scale=1 / params[0])
     elif dist_code == "uniform":
@@ -65,7 +66,6 @@ if st.button("Calcular y Graficar"):
         x = distribucion.ppf(p)
         st.write(f"**x tal que P(X ≤ x) = {p:.4f} es {x:.4f}**")
 
-    # Gráfico
     x_min, x_max = distribucion.ppf(0.001), distribucion.ppf(0.999)
     x_vals = np.arange(np.floor(x_min), np.ceil(x_max) + 1) if discreta else np.linspace(x_min, x_max, 500)
     y_vals = distribucion.pmf(x_vals) if discreta else distribucion.pdf(x_vals)
