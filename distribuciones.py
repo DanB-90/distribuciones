@@ -39,7 +39,7 @@ if modo == "Probabilidad P(X ≤ x)":
     x = st.number_input("Ingresa el valor de x:", value=0.0, step=0.1)
     p = None
 else:
-    p = st.number_input("Ingresa la probabilidad p (entre 0 y 1):", min_value=0.0, max_value=1.0, value=0.95)
+    p = st.number_input("Ingresa la probabilidad p (entre 0 y 1):", min_value=0.0000, max_value=1.0000, value=0.95)
     x = None
 
 # Selección de tipo de distribución (continua, discreta)
