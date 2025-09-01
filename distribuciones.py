@@ -27,7 +27,7 @@ dist_code, param_labels = distribuciones[dist_nombre]
 # Ingreso de parámetros
 params = []
 for label in param_labels:
-    valor = st.number_input(f"Ingresar {label}:", value=0, step=0.1, format="%.4f")
+    valor = st.number_input(f"Ingresar {label}:", value=0.0, step=0.1, format="%.4f")
     if label in ["n", "df", "df1", "df2"]:
         valor = int(valor)
     params.append(valor)
@@ -36,10 +36,10 @@ for label in param_labels:
 modo = st.radio("¿Qué deseas calcular?", ["Probabilidad P(X ≤ x)", "Inversa (x tal que P(X ≤ x) = p)"])
 
 if modo == "Probabilidad P(X ≤ x)":
-    x = st.number_input("Ingresa el valor de x:", value=0, step=0.1, format="%.4f")
+    x = st.number_input("Ingresa el valor de x:", value=0.0, step=0.1, format="%.4f")
     p = None
 else:
-    p = st.number_input("Ingresa la probabilidad p (entre 0 y 1):", min_value=0, max_value=1, value=0.0500, step=0.1, format="%.4f")
+    p = st.number_input("Ingresa la probabilidad p (entre 0 y 1):", min_value=0.0, max_value=1.0, value=0.0500, step=0.1, format="%.4f")
     x = None
 
 # Selección de tipo de distribución (continua, discreta)
