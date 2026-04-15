@@ -2,8 +2,11 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
+from PIL import Image
 
-st.set_page_config(page_title="Distribuciones de Probabilidad", layout="centered")
+icono = Image.open("E&B.png")
+
+st.set_page_config(page_title="Distribuciones de Probabilidad", page_icon=icono, layout="centered")
 
 st.title("Distribuciones de Probabilidad")
 
