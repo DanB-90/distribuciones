@@ -6,7 +6,7 @@ from PIL import Image
 
 icono = Image.open("E&B.png")
 
-st.set_page_config(page_title="Distribuciones de Probabilidad", page_icon=icono, layout="wide")
+st.set_page_config(page_title="Distribuciones de Probabilidad", page_icon=icono, layout="centered")
 
 st.title("Distribuciones de Probabilidad")
 
